@@ -43,6 +43,10 @@ void setupMotors() {
   pinMode(STCP_PIN, OUTPUT);
   pinMode(PWM1_PIN, OUTPUT);
   pinMode(PWM2_PIN, OUTPUT);
+
+  // 74HC595 OE is active-low. Drive it explicitly instead of relying on
+  // the AVR's power-on-reset default of LOW.
+  digitalWrite(EN_PIN, LOW);
 }
 
 /* Run the motor in different directions and at different speeds */
