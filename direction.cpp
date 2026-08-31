@@ -1,5 +1,4 @@
 #include "direction.h"
-#include <Arduino.h>
  
 Direction direction;
  
@@ -14,12 +13,10 @@ void Direction::verifyRotationReached(float currentYaw) {
   // yaw can jump 20-30+ degrees between checks, which can step clean over a
   // 2-degree-wide window and leave the robot spinning forever.
   bool reached = (rotationDirection >= 0)
-      ? (currentYaw >= rotateTo - rotationTolerance)
-      : (currentYaw <= rotateTo + rotationTolerance);
-
+      ? (currentYaw >= rotateTo)
+      : (currentYaw <= rotateTo);
  
   if (reached) {
-    Serial.println("RESET!");
     shouldRotate = false;
     rotateTo = currentYaw;
   }

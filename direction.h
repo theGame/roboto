@@ -2,6 +2,7 @@
 
 #include <math.h>
 #include <stdint.h>
+#include <Arduino.h>
 
 enum class DirectionType {
     LEFT,
@@ -32,8 +33,6 @@ private:
     // "reached or passed the target" instead of requiring an exact
     // narrow-window match, which large per-check yaw steps can skip over.
     int8_t rotationDirection = 1;
-
-    float rotationTolerance = 3.0f;
 };
 
 extern Direction direction;
