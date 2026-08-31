@@ -11,16 +11,15 @@ void setup() {
   setupServo();
   setupUltrasonicSensor();
   setupMotors();
+  giroscope.setup();
 }
 
 void loop() {
-    // giroscope.update();
-    // const float yaw = giroscope.getYaw();
+    giroscope.update();
+    const float yaw = giroscope.getYaw();
 
-    /*
     if (direction.isRotationInProcess()) {
         direction.verifyRotationReached(yaw);
-        
         
         Serial.println("Inside isRotationInProcess"); 
         if (direction.isRotationInProcess()) {
@@ -32,31 +31,25 @@ void loop() {
         Serial.println("FINISHED isRotationInProcess"); 
 
         // Rotation finished
-        // navigation.drive(DirectionType::STOP);
+        navigation.drive(DirectionType::STOP);
     }
-    */
-
-    Serial.println("START moving"); 
-    // Track the distance in front of the car using a Kalman filter while driving.
-    // distances.front = getFilteredDistance();    
     
-    // if (distances.canGoForward()) {
-    //     Serial.println("FORWARD"); 
-    //     navigation.drive(DirectionType::FRONT);
-    // } else {
-    //     Serial.println("ELSE");
-    //     navigation.drive(DirectionType::STOP);
 
-    //     distances.scan();
-    //     distances.print();
+    // Track the distance in front of the car using a Kalman filter while driving.
+    distances.front = getFilteredDistance();    
+    
+    if (distances.canGoForward()) {
+        Serial.println("FORWARD"); 
+        navigation.drive(DirectionType::FRONT);
+    } else {
+        Serial.println("ELSE");
+        navigation.drive(DirectionType::STOP);
 
-    //     navigation.drive(navigation.decideDirection(distances));
-    // }
+        distances.scan();
+        distances.print();
 
-
-
-    navigation.drive(DirectionType::FRONT);
-    motor(Forward, 250);
+        navigation.drive(navigation.decideDirection(distances));
+    }
 }
 
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Servo.h>  //servo library
+#include <Servo.h>
 #include <Arduino.h>
 
 /* Attach servo on pin 9 to servo object */
