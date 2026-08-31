@@ -52,46 +52,25 @@ void Navigation::drive(DirectionType directionType) {
             break;
 
         case DirectionType::RIGHT:
-            if (!direction.isRotationInProcess()) {
-                direction.startRotation(
-                    giroscope.getYaw(),
-                    direction.getRotationAngle(DirectionType::RIGHT)
-                );
-            }
+            startRotationIfNeeded(directionType);
             motor(Clockwise, ROTATION_SPEED);
             delay(ROTATION_DELAY);
             break;
 
         case DirectionType::RIGHT45:
-            if (!direction.isRotationInProcess()) {
-                direction.startRotation(
-                    giroscope.getYaw(),
-                    direction.getRotationAngle(DirectionType::RIGHT45)
-                );
-            }
+            startRotationIfNeeded(directionType);
             motor(Clockwise, ROTATION_SPEED);
             delay(ROTATION_DELAY);
             break;
 
         case DirectionType::LEFT45:
-            if (!direction.isRotationInProcess()) { 
-                direction.startRotation(
-                    giroscope.getYaw(),
-                    direction.getRotationAngle(DirectionType::LEFT45)
-                );
-            }
-        
+            startRotationIfNeeded(directionType);
             motor(ContraClockwise, ROTATION_SPEED);
             delay(ROTATION_DELAY);
             break;
 
         case DirectionType::LEFT:
-            if (!direction.isRotationInProcess()) { 
-                direction.startRotation(
-                    giroscope.getYaw(),
-                    direction.getRotationAngle(DirectionType::LEFT)
-                );
-            }
+            startRotationIfNeeded(directionType);
             motor(ContraClockwise, ROTATION_SPEED);
             delay(ROTATION_DELAY);
             break;
@@ -111,4 +90,25 @@ void Navigation::drive(DirectionType directionType) {
             delay(DRIVING_DELAY);
             break;
     }
+}
+
+void Navigation::startRotationIfNeeded(DirectionType directionType) {
+    if (!direction.isRotationInProcess()) {
+        activeRotationDirection = directionType;
+
+        // Flush any time elapsed since the last update() (e.g. the several
+        // seconds spent scanning) into its own reading now, while the robot
+        // is still stationary. Otherwise that long idle gap gets lumped
+        // together with the upcoming spin on the *next* update() call, and
+        // since MPU6050_light's update() samples the rate only once and
+        // multiplies it by the whole elapsed dt, a long near-zero-rate wait
+        // immediately followed by a short burst causes that burst's actual
+        // rotation to be almost entirely missed.
+        giroscope.update();
+        direction.startRotation(giroscope.getAngleZ(), direction.getRotationAngle(directionType));
+    }
+}
+
+void Navigation::continueRotation() {
+    drive(activeRotationDirection);
 }
