@@ -54,3 +54,14 @@ void avoidObstacles() {
         navigation.drive(navigation.decideDirection(distances));
     }
 }
+
+void chickenHeadManeuver() {
+    giroscope.update();
+
+    float angle = giroscope.getAngleZ();
+    if (angle < 90 && angle > -90) {
+        turnServo(90 + angle);
+    } else {
+        Serial.println("Not allowed to turn servo, rotation in process");
+    }
+}

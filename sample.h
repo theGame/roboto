@@ -13,3 +13,6 @@ void rotateUsingGyroscope();
 
 // Functions for avoiding obstacles using the ultrasonic sensor and the gyroscope
 void avoidObstacles();
+
+// Function for performing a chicken head maneuver
+void chickenHeadManeuver();

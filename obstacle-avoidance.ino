@@ -15,7 +15,9 @@ void setup() {
 void loop() {
     // to keep this file klean, 
     // the main loop is just calling the functions from sample.h
-    avoidObstacles();
+    // avoidObstacles();
+    chickenHeadManeuver();
+    // rotateUsingGyroscope();
 }
 
 

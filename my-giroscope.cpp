@@ -20,7 +20,7 @@ void MyGiroscope::setup() {
     delay(1000);
     
     mpu.calcOffsets(); // gyro and accelero
-    Serial.println("Done!\n");
+    Serial.println("MyGiroscope finished setup!\n");
 }
 
 void MyGiroscope::update() {
