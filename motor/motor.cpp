@@ -1,4 +1,4 @@
-#include "my-motor.h"
+#include "motor.h"
 
 /* Initialize PINs */
 namespace {

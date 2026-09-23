@@ -1,4 +1,4 @@
-#include "my-ultrasonic-sensor.h"
+#include "ultrasonic-sensor.h"
 
 // Ultrasonic control pin, and init filter
 namespace {

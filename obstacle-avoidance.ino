@@ -1,8 +1,8 @@
-#include "my-servo.h"
-#include "my-motor.h"
-#include "my-ultrasonic-sensor.h"
-#include "my-giroscope.h"
-#include "sample.h"
+#include "servo/servo.cpp"
+#include "motor/motor.cpp"
+#include "ultrasonic-sensor/ultrasonic-sensor.cpp"
+#include "giroscope/giroscope.cpp"
+#include "sample/sample.cpp"
 
 void setup() {
     Serial.begin(115200);

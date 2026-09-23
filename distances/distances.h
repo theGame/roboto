@@ -1,7 +1,7 @@
 #pragma once
 
-#include "my-servo.h"
-#include "my-ultrasonic-sensor.h"
+#include "../servo/servo.h"
+#include "../ultrasonic-sensor/ultrasonic-sensor.h"
 #include <Arduino.h>
 
 struct Distances {

@@ -1,4 +1,4 @@
-#include "my-giroscope.h"
+#include "giroscope.h"
 
 // public intstance
 MyGiroscope giroscope;

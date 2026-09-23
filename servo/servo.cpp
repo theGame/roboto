@@ -1,4 +1,4 @@
-#include "my-servo.h"
+#include "servo.h"
 
 /* Creates servo object to control servo, with defined PIN */
 namespace {

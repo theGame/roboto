@@ -1,10 +1,10 @@
-#include "my-servo.h"
-#include "my-motor.h"
-#include "my-ultrasonic-sensor.h"
-#include "my-giroscope.h"
-#include "distances.h"
-#include "direction.h"
-#include "navigation.h"
+#include "../servo/servo.h"
+#include "../motor/motor.h"
+#include "../ultrasonic-sensor/ultrasonic-sensor.h"
+#include "../giroscope/giroscope.h"
+#include "../distances/distances.h"
+#include "../direction/direction.h"
+#include "../navigation/navigation.h"
 
 #pragma once
 

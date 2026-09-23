@@ -1,9 +1,9 @@
 #pragma once
 
-#include "distances.h"
-#include "direction.h"
-#include "my-motor.h"
-#include "my-giroscope.h"
+#include "../distances/distances.h"
+#include "../direction/direction.h"
+#include "../motor/motor.h"
+#include "../giroscope/giroscope.h"
 #include <Arduino.h>
 
 class Navigation {
