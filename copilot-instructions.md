@@ -2,7 +2,7 @@
 
 ## Build, test, and lint
 
-This repository does not include a package manager, Makefile, CI workflow, or automated test suite. The project is an Arduino sketch-based codebase centered on `obstacle-avoidance.ino`.
+This repository does not include a package manager, Makefile, CI workflow, or automated test suite. The project is an Arduino sketch-based codebase centered on `roboto.ino`.
 
 Use the Arduino IDE or VS Code Arduino extension to build and upload the sketch to the target board. The README notes the project targets Arduino Uno / ESP32-class hardware.
 
@@ -24,7 +24,7 @@ There are no repository-defined lint or unit-test commands. When validating a ch
 
 The project is organized as a small robotics firmware application split across hardware driver modules and behavior logic:
 
-- `obstacle-avoidance.ino` is the entry point. `setup()` initializes the servo, ultrasonic sensor, motors, and gyroscope. `loop()` selects the active behavior strategy.
+- `roboto.ino` is the entry point. Its filename matches the repository folder as required by the Arduino build system. `setup()` initializes the servo, ultrasonic sensor, motors, and gyroscope. `loop()` selects the active behavior strategy.
 - `sample.h` / `sample.cpp` holds the higher-level robot maneuvers and is the place to look for the operational behavior (`avoidObstacles`, `rotateUsingGyroscope`, `chickenHeadManeuver`).
 - `navigation.h` / `navigation.cpp` owns path selection and motion commands. `Navigation::decideDirection()` chooses the next direction based on the scanned distances, and `Navigation::drive()` translates that decision into motor directions and rotation behavior.
 - `distances.h` / `distances.cpp` defines the `Distances` struct and the five-direction scan (`right`, `right45`, `front`, `left45`, `left`). This is the central object for obstacle detection and safety checks.
